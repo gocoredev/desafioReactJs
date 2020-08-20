@@ -31,11 +31,11 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    api.delete(`/repositories/${id}`).then(()=>{
-      handleRepositories()
-    })
+    await api.delete(`repositories/${id}`)
 
+    const repositoryList = repositories.filter(repository => repository.id !== id)
 
+    setRepositories(repositoryList);
   }
 
   useEffect(()=>{
